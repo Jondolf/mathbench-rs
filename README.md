@@ -3,7 +3,7 @@
 [![Build Status]][travis-ci]
 
 **NOTE:** This is a fork of [`mathbench-rs`](https://github.com/bitshifter/mathbench-rs),
-used for benchmarking [`bevy_math_extensions`][https://github.com/Jondolf/bevy_math_extensions].
+used for benchmarking [`bevy_math_extensions`][bevy_math_extensions].
 This is not actively maintained and may be out of date.
 
 `mathbench` is a suite of unit tests and benchmarks comparing the output and
@@ -14,7 +14,7 @@ game and graphics development tasks.
 compare the performance of `glam` with other similar 3D math libraries targeting
 games and graphics development, including:
 
-* [`bevy_math_extensions`][https://github.com/Jondolf/bevy_math_extensions]
+* [`bevy_math_extensions`][bevy_math_extensions]
 * [`cgmath`][cgmath]
 * [`euclid`][euclid]
 * [`nalgebra`][nalgebra]
@@ -25,6 +25,7 @@ games and graphics development, including:
 
 [Build Status]: https://travis-ci.org/bitshifter/mathbench-rs.svg?branch=master
 [travis-ci]: https://travis-ci.org/bitshifter/mathbench-rs
+[bevy_math_extensions]: https://github.com/Jondolf/bevy_math_extensions
 [cgmath]: https://crates.io/crates/cgmath
 [euclid]: https://crates.io/crates/euclid
 [glam]: https://github.com/bitshifter/glam-rs
