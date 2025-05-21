@@ -864,6 +864,166 @@ pub mod static_math_support {
     }
 }
 
+#[cfg(feature = "bevy_math_extensions")]
+pub mod bevy_math_extensions_support {
+    use super::BenchValue;
+    use bevy_math_extensions::*;
+
+    impl BenchValue for Vec2x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Vec2x4::new(
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+            )
+        }
+    }
+
+    impl BenchValue for Vec2x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Vec2x8::new(
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+            )
+        }
+    }
+
+    impl BenchValue for Vec3x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Vec3x4::new(
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+            )
+        }
+    }
+
+    impl BenchValue for Vec3x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Vec3x8::new(
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+            )
+        }
+    }
+
+    impl BenchValue for SymmetricMat2 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat2::from_cols_unchecked(Vec2::random_value(rng), Vec2::random_value(rng))
+        }
+    }
+
+    impl BenchValue for SymmetricMat2x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat2x4::from_cols_unchecked(
+                Vec2x4::random_value(rng),
+                Vec2x4::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for SymmetricMat2x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat2x8::from_cols_unchecked(
+                Vec2x8::random_value(rng),
+                Vec2x8::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for Mat2x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Mat2x4::from_cols(Vec2x4::random_value(rng), Vec2x4::random_value(rng))
+        }
+    }
+
+    impl BenchValue for Mat2x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Mat2x8::from_cols(Vec2x8::random_value(rng), Vec2x8::random_value(rng))
+        }
+    }
+
+    impl BenchValue for SymmetricMat3 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat3::from_cols_unchecked(
+                Vec3::random_value(rng),
+                Vec3::random_value(rng),
+                Vec3::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for SymmetricMat3x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat3x4::from_cols_unchecked(
+                Vec3x4::random_value(rng),
+                Vec3x4::random_value(rng),
+                Vec3x4::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for SymmetricMat3x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            SymmetricMat3x8::from_cols_unchecked(
+                Vec3x8::random_value(rng),
+                Vec3x8::random_value(rng),
+                Vec3x8::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for Mat3x4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Mat3x4::from_cols(
+                Vec3x4::random_value(rng),
+                Vec3x4::random_value(rng),
+                Vec3x4::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for Mat3x8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            Mat3x8::from_cols(
+                Vec3x8::random_value(rng),
+                Vec3x8::random_value(rng),
+                Vec3x8::random_value(rng),
+            )
+        }
+    }
+
+    impl BenchValue for Quatx4 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            fn from_euler_angles(roll: f32x4, pitch: f32x4, yaw: f32x4) -> Quatx4 {
+                Quatx4::from_axis_angle(Vec3x4::Y, yaw)
+                    * Quatx4::from_axis_angle(Vec3x4::X, pitch)
+                    * Quatx4::from_axis_angle(Vec3x4::Z, roll)
+            }
+            from_euler_angles(
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+                bevy_math_extensions::f32x4::from(rng.gen::<[f32; 4]>()),
+            )
+        }
+    }
+
+    impl BenchValue for Quatx8 {
+        fn random_value<R: rand::Rng>(rng: &mut R) -> Self {
+            fn from_euler_angles(roll: f32x8, pitch: f32x8, yaw: f32x8) -> Quatx8 {
+                Quatx8::from_axis_angle(Vec3x8::Y, yaw)
+                    * Quatx8::from_axis_angle(Vec3x8::X, pitch)
+                    * Quatx8::from_axis_angle(Vec3x8::Z, roll)
+            }
+            from_euler_angles(
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+                bevy_math_extensions::f32x8::from(rng.gen::<[f32; 8]>()),
+            )
+        }
+    }
+}
+
 #[cfg(feature = "ultraviolet")]
 pub mod ultraviolet_support {
     use super::BenchValue;

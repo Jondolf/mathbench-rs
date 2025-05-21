@@ -17,6 +17,10 @@ fn bench_rotation3_nop(c: &mut Criterion) {
         use cgmath::Quaternion;
         bench_unop!(b, op => ret_self, ty => Quaternion<f32>)
     });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Quat;
+        bench_unop!(b, op => ret_self, ty => Quat)
+    });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Rotor3;
         bench_unop!(b, op => ret_self, ty => Rotor3)
@@ -44,6 +48,10 @@ fn bench_rotation3_nop_wide(c: &mut Criterion) {
         use glam::Quat;
         bench_unop_wide!(b, size, width => 1, op => ret_self, ty => Quat)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx4;
+        bench_unop_wide!(b, size, width => 4, op => ret_self, ty => Quatx4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Rotor3x4;
         bench_unop_wide!(b, size, width => 4, op => ret_self, ty => Rotor3x4)
@@ -52,6 +60,10 @@ fn bench_rotation3_nop_wide(c: &mut Criterion) {
         use nalgebra::UnitQuaternion;
         use simba::simd::f32x4;
         bench_unop_wide!(b, size, width => 4, op => ret_self, ty => UnitQuaternion<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx8;
+        bench_unop_wide!(b, size, width => 8, op => ret_self, ty => Quatx8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Rotor3x8;
@@ -75,6 +87,10 @@ fn bench_rotation3_inverse(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::Quaternion;
         bench_unop!(b, op => conjugate, ty => Quaternion<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Quat;
+        bench_unop!(b, op => conjugate, ty => Quat)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Rotor3;
@@ -108,6 +124,10 @@ fn bench_rotation3_inverse_wide(c: &mut Criterion) {
         use glam::Quat;
         bench_unop_wide!(b, size, width => 1, op => conjugate, ty => Quat)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx4;
+        bench_unop_wide!(b, size, width => 4, op => conjugate, ty => Quatx4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Rotor3x4;
         bench_unop_wide!(b, size, width => 4, op => reversed, ty => Rotor3x4)
@@ -116,6 +136,10 @@ fn bench_rotation3_inverse_wide(c: &mut Criterion) {
         use nalgebra::UnitQuaternion;
         use simba::simd::f32x4;
         bench_unop_wide!(b, size, width => 4, op => conjugate, ty => UnitQuaternion<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx8;
+        bench_unop_wide!(b, size, width => 8, op => conjugate, ty => Quatx8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Rotor3x8;
@@ -138,6 +162,10 @@ fn bench_rotation3_mul_rotation3(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::Quaternion;
         bench_binop!(b, op => mul, ty1 => Quaternion<f32>, ty2 => Quaternion<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Quat;
+        bench_binop!(b, op => mul, ty1 => Quat, ty2 => Quat)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Rotor3;
@@ -170,6 +198,10 @@ fn bench_rotation3_mul_rotation3_wide(c: &mut Criterion) {
         use glam::Quat;
         bench_binop_wide!(b, size, width => 1, op => mul, ty1 => Quat, ty2 => Quat)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx4;
+        bench_binop_wide!(b, size, width => 4, op => mul, ty1 => Quatx4, ty2 => Quatx4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Rotor3x4;
         bench_binop_wide!(b, size, width => 4, op => mul, ty1 => Rotor3x4, ty2 => Rotor3x4)
@@ -178,6 +210,10 @@ fn bench_rotation3_mul_rotation3_wide(c: &mut Criterion) {
         use nalgebra::UnitQuaternion;
         use simba::simd::f32x4;
         bench_binop_wide!(b, size, width => 4, op => mul, ty1 => UnitQuaternion<f32x4>, ty2 => UnitQuaternion<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Quatx8;
+        bench_binop_wide!(b, size, width => 8, op => mul, ty1 => Quatx8, ty2 => Quatx8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Rotor3x8;
@@ -202,6 +238,10 @@ fn bench_rotation3_mul_vector3(c: &mut Criterion) {
         bench_cgmath!(group, size, |b, size| {
             use cgmath::{Quaternion, Vector3};
             bench_binop!(b, size, op => mul, ty1 => Quaternion<f32>, ty2 => Vector3<f32>)
+        });
+        bench_bevy_math_extensions!(group, size, |b, size| {
+            use bevy_math_extensions::{Quat, Vec3};
+            bench_binop!(b, size, op => mul, ty1 => Quat, ty2 => Vec3)
         });
         bench_ultraviolet!(group, size, |b, size| {
             use ultraviolet::{Rotor3, Vec3};
@@ -236,6 +276,10 @@ fn bench_rotation3_mul_vector3_wide(c: &mut Criterion) {
         use glam::{Quat, Vec3};
         bench_binop_wide!(b, size, width => 1, op => mul, ty1 => Quat, ty2 => Vec3)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::{Quatx4, Vec3x4};
+        bench_binop_wide!(b, size, width => 4, op => mul, ty1 => Quatx4, ty2 => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::{Rotor3x4, Vec3x4};
         bench_binop_wide!(b, size, width => 4, op => mul, ty1 => Rotor3x4, ty2 => Vec3x4)
@@ -244,6 +288,10 @@ fn bench_rotation3_mul_vector3_wide(c: &mut Criterion) {
         use nalgebra::{UnitQuaternion, Vector3};
         use simba::simd::f32x4;
         bench_binop_wide!(b, size, width => 4, op => mul, ty1 => UnitQuaternion<f32x4>, ty2 => Vector3<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::{Quatx8, Vec3x8};
+        bench_binop_wide!(b, size, width => 8, op => mul, ty1 => Quatx8, ty2 => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::{Rotor3x8, Vec3x8};

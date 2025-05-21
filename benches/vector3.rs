@@ -16,6 +16,10 @@ fn bench_vector3_ret_self(c: &mut Criterion) {
         use cgmath::Vector3;
         bench_unop!(b, op => ret_self, ty => Vector3<f32>)
     });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Vec3;
+        bench_unop!(b, op => ret_self, ty => Vec3)
+    });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Vec3;
         bench_unop!(b, op => ret_self, ty => Vec3)
@@ -43,6 +47,10 @@ fn bench_vector3_ret_self_wide(c: &mut Criterion) {
         use glam::Vec3A;
         bench_unop_wide!(b, size, width => 1, op => ret_self, ty => Vec3A)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x4;
+        bench_unop_wide!(b, size, width => 4, op => ret_self, ty => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Vec3x4;
         bench_unop_wide!(b, size, width => 4, op => ret_self, ty => Vec3x4)
@@ -51,6 +59,10 @@ fn bench_vector3_ret_self_wide(c: &mut Criterion) {
         use nalgebra::Vector3;
         use simba::simd::f32x4;
         bench_unop_wide!(b, size, width => 4, op => ret_self, ty => Vector3<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x8;
+        bench_unop_wide!(b, size, width => 8, op => ret_self, ty => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Vec3x8;
@@ -73,6 +85,10 @@ fn bench_vector3_length(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::{InnerSpace, Vector3};
         bench_unop!(b, op => magnitude, ty => Vector3<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Vec3;
+        bench_unop!(b, op => length, ty => Vec3)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Vec3;
@@ -105,6 +121,10 @@ fn bench_vector3_length_wide(c: &mut Criterion) {
         use glam::Vec3A;
         bench_unop_wide!(b, size, width => 1, op => length, ty => Vec3A)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x4;
+        bench_unop_wide!(b, size, width => 4, op => length, ty => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Vec3x4;
         bench_unop_wide!(b, size, width => 4, op => mag, ty => Vec3x4)
@@ -113,6 +133,10 @@ fn bench_vector3_length_wide(c: &mut Criterion) {
         use nalgebra::Vector3;
         use simba::simd::f32x4;
         bench_unop_wide!(b, size, width => 4, op => norm, ty => Vector3<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x8;
+        bench_unop_wide!(b, size, width => 8, op => length, ty => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Vec3x8;
@@ -135,6 +159,10 @@ fn bench_vector3_normalize(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::{InnerSpace, Vector3};
         bench_unop!(b, op => normalize, ty => Vector3<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Vec3;
+        bench_unop!(b, op => normalize, ty => Vec3)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Vec3;
@@ -163,6 +191,10 @@ fn bench_vector3_normalize_wide(c: &mut Criterion) {
         use glam::Vec3A;
         bench_unop_wide!(b, size, width => 1, op => normalize, ty => Vec3A)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x4;
+        bench_unop_wide!(b, size, width => 4, op => normalize, ty => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Vec3x4;
         bench_unop_wide!(b, size, width => 4, op => normalized, ty => Vec3x4)
@@ -171,6 +203,10 @@ fn bench_vector3_normalize_wide(c: &mut Criterion) {
         use nalgebra::Vector3;
         use simba::simd::f32x4;
         bench_unop_wide!(b, size, width => 4, op => normalize, ty => Vector3<f32x4>)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x8;
+        bench_unop_wide!(b, size, width => 8, op => normalize, ty => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Vec3x8;
@@ -193,6 +229,10 @@ fn bench_vector3_dot(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::{InnerSpace, Vector3};
         bench_binop!(b, op => dot, ty1 => Vector3<f32>, ty2 => Vector3<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Vec3;
+        bench_binop!(b, op => dot, ty1 => Vec3, ty2 => Vec3)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Vec3;
@@ -226,6 +266,10 @@ fn bench_vector3_dot_wide(c: &mut Criterion) {
         use glam::Vec3A;
         bench_binop_wide!(b, size, width => 1, op => dot, ty1 => Vec3A, ty2 => Vec3A)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x4;
+        bench_binop_wide!(b, size, width => 4, op => dot, ty1 => Vec3x4, ty2 => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Vec3x4;
         bench_binop_wide!(b, size, width => 4, op => dot, ty1 => Vec3x4, ty2 => Vec3x4)
@@ -234,6 +278,10 @@ fn bench_vector3_dot_wide(c: &mut Criterion) {
         use nalgebra::Vector3;
         use simba::simd::f32x4;
         bench_binop_wide!(b, size, width => 4, op => dot, ty1 => Vector3<f32x4>, ty2 => Vector3<f32x4>, param => by_ref)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x8;
+        bench_binop_wide!(b, size, width => 8, op => dot, ty1 => Vec3x8, ty2 => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Vec3x8;
@@ -256,6 +304,10 @@ fn bench_vector3_cross(c: &mut Criterion) {
     bench_cgmath!(group, |b| {
         use cgmath::Vector3;
         bench_binop!(b, op => cross, ty1 => Vector3<f32>, ty2 => Vector3<f32>)
+    });
+    bench_bevy_math_extensions!(group, |b| {
+        use bevy_math_extensions::Vec3;
+        bench_binop!(b, op => cross, ty1 => Vec3, ty2 => Vec3)
     });
     bench_ultraviolet!(group, |b| {
         use ultraviolet::Vec3;
@@ -288,6 +340,10 @@ fn bench_vector3_cross_wide(c: &mut Criterion) {
         use glam::Vec3A;
         bench_binop_wide!(b, size, width => 1, op => cross, ty1 => Vec3A, ty2 => Vec3A)
     });
+    bench_bevy_math_extensions_f32x4!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x4;
+        bench_binop_wide!(b, size, width => 4, op => cross, ty1 => Vec3x4, ty2 => Vec3x4)
+    });
     bench_ultraviolet_f32x4!(group, size, |b, size| {
         use ultraviolet::Vec3x4;
         bench_binop_wide!(b, size, width => 4, op => cross, ty1 => Vec3x4, ty2 => Vec3x4)
@@ -296,6 +352,10 @@ fn bench_vector3_cross_wide(c: &mut Criterion) {
         use nalgebra::Vector3;
         use simba::simd::f32x4;
         bench_binop_wide!(b, size, width => 4, op => cross, ty1 => Vector3<f32x4>, ty2 => Vector3<f32x4>, param => by_ref)
+    });
+    bench_bevy_math_extensions_f32x8!(group, size, |b, size| {
+        use bevy_math_extensions::Vec3x8;
+        bench_binop_wide!(b, size, width => 8, op => cross, ty1 => Vec3x8, ty2 => Vec3x8)
     });
     bench_ultraviolet_f32x8!(group, size, |b, size| {
         use ultraviolet::Vec3x8;

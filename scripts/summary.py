@@ -6,11 +6,11 @@ import os
 import sys
 import prettytable
 
-DEFAULT = ['glam', 'cgmath', 'nalgebra']
+DEFAULT = ['glam', 'bevy_math_extensions', 'cgmath', 'nalgebra']
 OPTIONAL = ['euclid', 'vek', 'pathfinder', 'static-math', 'ultraviolet']
 SCALAR = DEFAULT + OPTIONAL
 
-WIDE = ['glam_f32x1', 'ultraviolet_f32x4', 'nalgebra_f32x4', 'ultraviolet_f32x8', 'nalgebra_f32x8']
+WIDE = ['glam_f32x1', 'bevy_math_extensions_f32x4', 'ultraviolet_f32x4', 'nalgebra_f32x4', 'bevy_math_extensions_f32x4', 'ultraviolet_f32x8', 'nalgebra_f32x8']
 
 CHOICES = SCALAR + WIDE
 

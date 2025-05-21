@@ -47,6 +47,66 @@ macro_rules! bench_cgmath {
 }
 
 #[macro_export]
+macro_rules! bench_bevy_math_extensions {
+    ($group:ident, $closure:expr) => {
+        bench_lib!("bevy_math_extensions", $group, $closure)
+    };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("bevy_math_extensions", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
+macro_rules! bench_bevy_math_extensions_f32x4 {
+    // ($group:ident, $closure:expr) => {
+    //     bench_lib!("bevy_math_extensions_f32x4", $group, $closure)
+    // };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("bevy_math_extensions_f32x4", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
+macro_rules! bench_bevy_math_extensions_f32x8 {
+    // ($group:ident, $closure:expr) => {
+    //     bench_lib!("bevy_math_extensions_f32x8", $group, $closure)
+    // };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("bevy_math_extensions_f32x8", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
+macro_rules! bench_bevy_math_extensions_f64 {
+    // ($group:ident, $closure:expr) => {
+    //     bench_lib!("bevy_math_extensions_f64", $group, $closure)
+    // };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("bevy_math_extensions_f64", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
+macro_rules! bench_bevy_math_extensions_f64x2 {
+    // ($group:ident, $closure:expr) => {
+    //     bench_lib!("bevy_math_extensions_f64x2", $group, $closure)
+    // };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("bevy_math_extensions_f64x2", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
+macro_rules! bench_bevy_math_extensions_f64x4 {
+    // ($group:ident, $closure:expr) => {
+    //     bench_lib!("bevy_math_extensions_f64x4", $group, $closure)
+    // };
+    ($group:ident, $size:expr, $closure:expr) => {
+        bench_lib!("ultraviolet_f64x4", $group, $size, $closure)
+    };
+}
+
+#[macro_export]
 macro_rules! bench_ultraviolet {
     ($group:ident, $closure:expr) => {
         bench_lib!("ultraviolet", $group, $closure)

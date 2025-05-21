@@ -6,11 +6,17 @@ edition = "2018"
 
 [features]
 # defaults can be disabled for benchmarks but are required for tests
-default = ["cgmath", "nalgebra", "ultraviolet"]
+default = ["bevy_math_extensions", "cgmath", "nalgebra", "ultraviolet"]
 
 # fake glam target for wide comparisons
 glam_f32x1 = []
 
+bevy_math_extensions_f32x4 = ["bevy_math_extensions", "wide_mathbench"]
+bevy_math_extensions_f32x8 = ["bevy_math_extensions", "wide_mathbench"]
+bevy_math_extensions_wide = [
+    "bevy_math_extensions_f32x4",
+    "bevy_math_extensions_f32x8",
+]
 ultraviolet_f32x4 = ["ultraviolet", "wide_mathbench"]
 ultraviolet_f32x8 = ["ultraviolet", "wide_mathbench"]
 ultraviolet_wide = ["ultraviolet_f32x4", "ultraviolet_f32x8"]
@@ -20,11 +26,20 @@ nalgebra_f32x4 = ["nalgebra", "simba"]
 nalgebra_f32x8 = ["nalgebra", "simba"]
 nalgebra_wide = ["nalgebra_f32x4", "nalgebra_f32x8"]
 
-scalar = ["cgmath", "nalgebra", "ultraviolet", "euclid", "vek", "pathfinder_geometry", "static-math"]
+scalar = [
+    "bevy_math_extensions",
+    "cgmath",
+    "nalgebra",
+    "ultraviolet",
+    "euclid",
+    "vek",
+    "pathfinder_geometry",
+    "static-math",
+]
 
 # nalgebra_wide fails to build due to packed_simd errors
 # wide = ["glam_f32x1", "ultraviolet_wide", "nalgebra_wide"]
-wide = ["glam_f32x1", "ultraviolet_wide"]
+wide = ["glam_f32x1", "bevy_math_extensions_wide", "ultraviolet_wide"]
 
 all = ["scalar", "wide"]
 
@@ -41,6 +56,11 @@ version = "0.29.0"
 features = ["mint", "rand"]
 # a lot of random data generation uses glam, so can't be optional yet
 # optional = true
+
+[dependencies.bevy_math_extensions]
+git = "https://github.com/Jondolf/bevy_math_extensions.git"
+features = []
+optional = true
 
 [dependencies.nalgebra]
 version = "0.33.2"
@@ -114,6 +134,14 @@ harness = false
 
 [[bench]]
 name = "matrix4"
+harness = false
+
+[[bench]]
+name = "symmetric_matrix2"
+harness = false
+
+[[bench]]
+name = "symmetric_matrix3"
 harness = false
 
 [[bench]]
